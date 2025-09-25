@@ -23,7 +23,7 @@ public class ThongBaoAdapter extends RecyclerView.Adapter<ThongBaoAdapter.ThongB
     @NonNull
     @Override
     public ThongBaoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_thongbao, parent, false);
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_thongbao, parent, false);
         return new ThongBaoViewHolder(v);
     }
 
@@ -32,7 +32,9 @@ public class ThongBaoAdapter extends RecyclerView.Adapter<ThongBaoAdapter.ThongB
         ThongBao tb = list.get(position);
         holder.txtTieuDe.setText(tb.getTieuDe());
         holder.txtNoiDung.setText(tb.getNoiDung());
+        holder.txtNguoiGui.setText("Người gửi: " + tb.getNguoiGui());
         holder.txtNgayGui.setText("Ngày gửi: " + tb.getNgayGui());
+
     }
 
     @Override
@@ -41,12 +43,13 @@ public class ThongBaoAdapter extends RecyclerView.Adapter<ThongBaoAdapter.ThongB
     }
 
     static class ThongBaoViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTieuDe, txtNoiDung, txtNgayGui;
+        TextView txtTieuDe, txtNoiDung, txtNgayGui,txtNguoiGui;
 
         public ThongBaoViewHolder(@NonNull View itemView) {
             super(itemView);
             txtTieuDe = itemView.findViewById(R.id.txtTieuDe);
             txtNoiDung = itemView.findViewById(R.id.txtNoiDung);
+            txtNguoiGui = itemView.findViewById(R.id.txtNguoiGui);
             txtNgayGui = itemView.findViewById(R.id.txtNgayGui);
         }
     }

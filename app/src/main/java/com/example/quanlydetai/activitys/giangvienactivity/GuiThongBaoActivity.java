@@ -22,7 +22,7 @@ public class GuiThongBaoActivity extends AppCompatActivity {
 
     private EditText edtTieuDe, edtNoiDung,edtMaSV;
     private RadioGroup radioGroup;
-    private RadioButton radioTatCa, radioTheoLop;
+    private RadioButton radioTatCa;
     private Button btnGuiThongBao;
 
     private FirebaseFirestore db;
@@ -70,7 +70,16 @@ public class GuiThongBaoActivity extends AppCompatActivity {
         String ngayGui = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         String id = UUID.randomUUID().toString();
 
-        ThongBao tb = new ThongBao(id, tieuDe, noiDung, ngayGui, gvId, nguoiNhan);
+        db.collection("users")
+                .whereEqualTo("maGV", gvId)
+                .get()
+                .addOnSuccessListener(query -> {
+                    String tenGV = "Giảng viên";
+                    if (!query.isEmpty()) {
+                        tenGV = query.getDocuments().get(0).getString("hoTen"); // lấy tên GV
+                    }
+
+        ThongBao tb = new ThongBao(id, tieuDe, noiDung, ngayGui, tenGV, nguoiNhan);
 
         db.collection("thongbao")
                 .document(id)
@@ -84,6 +93,6 @@ public class GuiThongBaoActivity extends AppCompatActivity {
                 .addOnFailureListener(e ->
                         Toast.makeText(this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show()
                 );
+        });
     }
-
 }
