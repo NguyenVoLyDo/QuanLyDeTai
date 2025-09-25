@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Form nộp báo cáo -->
+    <EditText
+        android:id="@+id/edtTenBaoCao"
+        android:hint="Tên báo cáo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp" />
+
+    <EditText
+        android:id="@+id/edtLinkFile"
+        android:hint="Link file báo cáo (Google Drive, PDF...)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp" />
+    <EditText
+        android:id="@+id/edtTenDeTai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập tên đề tài"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/btnNopBaoCao"
+        android:text="Nộp báo cáo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Danh sách báo cáo đã nộp -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerBaoCao"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

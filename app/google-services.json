@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "723614892177",
+    "project_id": "quanlydetai-dfe10",
+    "storage_bucket": "quanlydetai-dfe10.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723614892177:android:f59043703fedc6d772ff30",
+        "android_client_info": {
+          "package_name": "com.example.quanlydetai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiFBvaWIx7Fo9B8TecrGdDF_rLRLlzL-U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
