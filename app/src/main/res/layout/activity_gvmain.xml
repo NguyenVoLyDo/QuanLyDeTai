@@ -20,11 +20,18 @@
             app:title="Danh sách đề tài chờ duyệt" />
 
         <!-- RecyclerView hiển thị danh sách đề tài chưa duyệt -->
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerDeTaiGV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="8dp" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <TextView
             android:id="@+id/txtEmpty"

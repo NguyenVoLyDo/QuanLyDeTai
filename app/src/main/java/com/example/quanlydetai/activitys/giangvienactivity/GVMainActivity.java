@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,7 @@ public class GVMainActivity extends AppCompatActivity implements NavigationView.
 
     private DrawerLayout drawerLayout;
     private RecyclerView recyclerView;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private DuyetDeTaiAdapter adapter;
     private List<DeTai> deTaiList = new ArrayList<>();
     private FirebaseFirestore db;
@@ -63,6 +65,8 @@ public class GVMainActivity extends AppCompatActivity implements NavigationView.
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new DuyetDeTaiAdapter(this, deTaiList);
         recyclerView.setAdapter(adapter);
+        swipeRefreshLayout = findViewById(R.id.swipeRefresh);
+        swipeRefreshLayout.setOnRefreshListener(this::loadDeTaiChuaDuyet);
         txtEmpty = findViewById(R.id.txtEmpty);
 
         db = FirebaseFirestore.getInstance();
@@ -81,6 +85,7 @@ public class GVMainActivity extends AppCompatActivity implements NavigationView.
                         deTaiList.add(dt);
                     }
                     adapter.notifyDataSetChanged();
+                    swipeRefreshLayout.setRefreshing(false); // tắt loading
                     if (deTaiList.isEmpty()) {
                         recyclerView.setVisibility(View.GONE);
                         txtEmpty.setVisibility(View.VISIBLE);
@@ -90,9 +95,10 @@ public class GVMainActivity extends AppCompatActivity implements NavigationView.
                     }
 
                 })
-                .addOnFailureListener(e ->
-                        Toast.makeText(this, "Lỗi tải đề tài: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                );
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Lỗi tải đề tài: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    swipeRefreshLayout.setRefreshing(false); // tắt loading
+                });
     }
 
     @Override

@@ -26,11 +26,18 @@
             android:layout_height="match_parent">
 
             <!-- Danh sách đề tài -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerDeTai"
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeRefresh"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="8dp" />
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerDeTai"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp"/>
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
             <!-- Floating Action Button -->
             <com.google.android.material.floatingactionbutton.FloatingActionButton

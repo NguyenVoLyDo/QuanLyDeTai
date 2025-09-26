@@ -3,6 +3,7 @@ package com.example.quanlydetai.activitys.studentactivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +32,7 @@ public class StudentMainActivity extends AppCompatActivity
 
     private DrawerLayout drawerLayout;
     private RecyclerView recyclerView;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private DangKyDeTaiAdapter adapter;
     private List<DeTai> deTaiList = new ArrayList<>();
     private FirebaseFirestore db;
@@ -59,11 +61,16 @@ public class StudentMainActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
+
+
         // RecyclerView
         recyclerView = findViewById(R.id.recyclerDeTai);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new DangKyDeTaiAdapter(deTaiList);
         recyclerView.setAdapter(adapter);
+
+        swipeRefreshLayout = findViewById(R.id.swipeRefresh);
+        swipeRefreshLayout.setOnRefreshListener(this::loadDeTai);
 
         // Floating Action Button
         FloatingActionButton fab = findViewById(R.id.fabAddDeTai);
@@ -86,10 +93,12 @@ public class StudentMainActivity extends AppCompatActivity
                         deTaiList.add(dt);
                     }
                     adapter.notifyDataSetChanged();
+                    swipeRefreshLayout.setRefreshing(false); // tắt loading
                 })
-                .addOnFailureListener(e ->
-                        Toast.makeText(this, "Lỗi tải đề tài: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                );
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Lỗi tải đề tài: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    swipeRefreshLayout.setRefreshing(false); // tắt loading
+                });
     }
 
     @Override
