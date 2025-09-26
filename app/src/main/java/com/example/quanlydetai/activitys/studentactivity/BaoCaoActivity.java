@@ -32,7 +32,7 @@ public class BaoCaoActivity extends AppCompatActivity {
     private FirebaseFirestore db;
 
     private String sinhVienId;
-    private String deTaiId; // chỉ lưu id đề tài, sẽ check trạng thái approved trước khi nộp
+    private String deTaiId; // chỉ lưu id đề tài hợp lệ (đã duyệt) của SV
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,21 +52,25 @@ public class BaoCaoActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        // Lấy đề tài của sinh viên
-        fetchDeTai();
+        // Lấy đề tài đã duyệt của sinh viên
+        fetchApprovedDeTai();
 
         btnNopBaoCao.setOnClickListener(v -> nopBaoCao());
 
         loadBaoCao();
     }
 
-    private void fetchDeTai() {
+    private void fetchApprovedDeTai() {
         db.collection("detai")
                 .whereEqualTo("sinhVienId", sinhVienId)
+                .whereEqualTo("trangThai", "approved") // chỉ lấy đề tài đã duyệt
                 .get()
                 .addOnSuccessListener(query -> {
                     if (!query.isEmpty()) {
+                        // nếu 1 SV chỉ được duyệt 1 đề tài → lấy document đầu tiên
                         deTaiId = query.getDocuments().get(0).getId();
+                    } else {
+                        deTaiId = null;
                     }
                 })
                 .addOnFailureListener(e ->
@@ -76,24 +80,11 @@ public class BaoCaoActivity extends AppCompatActivity {
 
     private void nopBaoCao() {
         if (deTaiId == null) {
-            Toast.makeText(this, "Bạn chưa có đề tài, không thể nộp báo cáo!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Bạn chưa có đề tài được duyệt, không thể nộp báo cáo!", Toast.LENGTH_LONG).show();
             return;
         }
 
-        // Kiểm tra trạng thái đề tài trước khi nộp
-        db.collection("detai").document(deTaiId).get()
-                .addOnSuccessListener(doc -> {
-                    String trangThai = doc.getString("trangThai");
-                    if (trangThai != null && trangThai.equals("approved")) {
-                        // Cho phép nộp báo cáo
-                        saveBaoCao();
-                    } else {
-                        Toast.makeText(this, "Đề tài chưa được duyệt, không thể nộp báo cáo!", Toast.LENGTH_LONG).show();
-                    }
-                })
-                .addOnFailureListener(e ->
-                        Toast.makeText(this, "Lỗi kiểm tra đề tài: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                );
+        saveBaoCao();
     }
 
     private void saveBaoCao() {
@@ -113,7 +104,7 @@ public class BaoCaoActivity extends AppCompatActivity {
         baoCao.setTenBaoCao(tenBaoCao);
         baoCao.setLinkFile(linkFile);
         baoCao.setSinhVienId(sinhVienId);
-        baoCao.setDeTaiId(deTaiId); // liên kết với đề tài
+        baoCao.setDeTaiId(deTaiId);
         baoCao.setNgayNop(ngayNop);
         baoCao.setTrangThai("Chưa chấm");
 
