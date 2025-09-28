@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">quanlydetai</string>
+    <string name="app_name">Quản lý đề tài</string>
+    <string name="profile">Hồ sơ</string>
+    <string name="add">Thêm</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

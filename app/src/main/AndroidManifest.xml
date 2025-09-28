@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quanlydetai">
         <activity
+            android:name=".activitys.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".activitys.adminactivity.SystemInfoActivity"
             android:exported="false" />
         <activity
@@ -64,6 +67,9 @@
             android:exported="false" />
         <activity
             android:name=".activitys.studentactivity.StudentMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitys.ProfileActivity"
             android:exported="false" />
     </application>
 

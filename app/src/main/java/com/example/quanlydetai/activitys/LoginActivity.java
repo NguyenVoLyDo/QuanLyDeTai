@@ -93,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                         .addOnSuccessListener(doc -> {
                             SinhVien sv = doc.toObject(SinhVien.class);
                             Intent i = new Intent(this, StudentMainActivity.class);
+                            i.putExtra("id",tk.getId());
                             i.putExtra("maSV", tk.getMaSV());
                             i.putExtra("hoTen", sv != null ? sv.getHoTen() : tk.getHoTen());
                             startActivity(i);
@@ -106,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
                         .addOnSuccessListener(doc -> {
                             GiangVien gv = doc.toObject(GiangVien.class);
                             Intent i = new Intent(this, GVMainActivity.class);
+                            i.putExtra("id",tk.getId());
                             i.putExtra("maGV", tk.getMaGV());
                             i.putExtra("hoTen", gv != null ? gv.getHoTen() : tk.getHoTen());
                             startActivity(i);

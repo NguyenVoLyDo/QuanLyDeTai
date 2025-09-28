@@ -17,7 +17,16 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="Danh sách đề tài chờ duyệt" />
+            app:title="Danh sách đề tài chờ duyệt">
+        <ImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_account_circle"
+            android:layout_gravity="end"
+            android:padding="4dp"
+            android:contentDescription="@string/profile" />
+        </androidx.appcompat.widget.Toolbar>
 
         <!-- RecyclerView hiển thị danh sách đề tài chưa duyệt -->
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -47,11 +56,17 @@
 
     <!-- Navigation Drawer -->
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view_gv"
+        android:id="@+id/nav_view_gv_left"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/menu_teacher" />
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view_gv_right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        app:menu="@menu/menu_profile" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
 

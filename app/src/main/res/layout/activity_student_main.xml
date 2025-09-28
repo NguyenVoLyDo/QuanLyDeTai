@@ -17,8 +17,17 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:title="Đề tài đã đăng ký"
-            android:titleTextColor="@android:color/white" />
+            android:titleTextColor="@android:color/white"
+            app:title="Đề tài đã đăng ký">
+        <ImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_account_circle"
+            android:layout_gravity="end"
+            android:padding="4dp"
+            android:contentDescription="@string/profile" />
+        </androidx.appcompat.widget.Toolbar>
 
 
         <FrameLayout
@@ -53,11 +62,17 @@
 
     <!-- Navigation Drawer -->
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigationView"
+        android:id="@+id/navigationViewLeft"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:menu="@menu/menu_student"
         android:background="@android:color/white" />
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationViewRight"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        app:menu="@menu/menu_profile" />
 </androidx.drawerlayout.widget.DrawerLayout>
