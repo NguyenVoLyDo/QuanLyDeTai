@@ -16,7 +16,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class ChangePasswordActivity extends AppCompatActivity {
 
     private EditText edtOldPass, edtNewPass, edtConfirmPass;
-    private Button btnChangePassword;
     private FirebaseFirestore db;
     private String userId; // nhận từ intent
     private String loaiTK; // nhận từ intent
@@ -29,7 +28,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         edtOldPass = findViewById(R.id.edtOldPass);
         edtNewPass = findViewById(R.id.edtNewPass);
         edtConfirmPass = findViewById(R.id.edtConfirmPass);
-        btnChangePassword = findViewById(R.id.btnChangePassword);
+        Button btnChangePassword = findViewById(R.id.btnChangePassword);
 
         db = FirebaseFirestore.getInstance();
         userId = getIntent().getStringExtra("userId");

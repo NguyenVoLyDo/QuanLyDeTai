@@ -1,7 +1,5 @@
 package com.example.quanlydetai.activitys.studentactivity;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -19,9 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class KetQuaActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
     private KetQuaAdapter adapter;
-    private List<BaoCao> baoCaoList = new ArrayList<>();
+    private final List<BaoCao> baoCaoList = new ArrayList<>();
     private FirebaseFirestore db;
 
     private String sinhVienId;
@@ -33,7 +30,7 @@ public class KetQuaActivity extends AppCompatActivity {
 
         sinhVienId = getIntent().getStringExtra("maSV");
 
-        recyclerView = findViewById(R.id.recyclerKetQua);
+        RecyclerView recyclerView = findViewById(R.id.recyclerKetQua);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new KetQuaAdapter(baoCaoList, this); // truyền context để mở link

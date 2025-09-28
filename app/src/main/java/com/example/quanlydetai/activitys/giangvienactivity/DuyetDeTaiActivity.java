@@ -18,7 +18,6 @@ import java.util.List;
 
 public class DuyetDeTaiActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
     private DuyetDeTaiAdapter adapter;
     private List<DeTai> deTaiList;
     private FirebaseFirestore db;
@@ -28,7 +27,7 @@ public class DuyetDeTaiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_duyet_de_tai);
 
-        recyclerView = findViewById(R.id.recyclerDeTaiGV);
+        RecyclerView recyclerView = findViewById(R.id.recyclerDeTaiGV);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         deTaiList = new ArrayList<>();

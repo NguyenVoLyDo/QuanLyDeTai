@@ -21,10 +21,7 @@ import java.util.Locale;
 public class GuiThongBaoActivity extends AppCompatActivity {
 
     private EditText edtTieuDe, edtNoiDung,edtMaSV;
-    private RadioGroup radioGroup;
     private RadioButton radioTatCa;
-    private Button btnGuiThongBao;
-
     private FirebaseFirestore db;
 
     private String gvId;
@@ -38,10 +35,10 @@ public class GuiThongBaoActivity extends AppCompatActivity {
 
         edtTieuDe = findViewById(R.id.edtTieuDe);
         edtNoiDung = findViewById(R.id.edtNoiDung);
-        radioGroup = findViewById(R.id.radioGroup);
+        RadioGroup radioGroup = findViewById(R.id.radioGroup);
         edtMaSV = findViewById(R.id.edtMaSV);
         radioTatCa = findViewById(R.id.radioTatCa);
-        btnGuiThongBao = findViewById(R.id.btnGuiThongBao);
+        Button btnGuiThongBao = findViewById(R.id.btnGuiThongBao);
 
         db = FirebaseFirestore.getInstance();
 

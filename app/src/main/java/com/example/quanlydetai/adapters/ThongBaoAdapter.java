@@ -14,7 +14,7 @@ import com.example.quanlydetai.models.ThongBao;
 import java.util.List;
 
 public class ThongBaoAdapter extends RecyclerView.Adapter<ThongBaoAdapter.ThongBaoViewHolder> {
-    private List<ThongBao> list;
+    private final List<ThongBao> list;
 
     public ThongBaoAdapter(List<ThongBao> list) {
         this.list = list;
@@ -42,7 +42,7 @@ public class ThongBaoAdapter extends RecyclerView.Adapter<ThongBaoAdapter.ThongB
         return list.size();
     }
 
-    static class ThongBaoViewHolder extends RecyclerView.ViewHolder {
+    public static class ThongBaoViewHolder extends RecyclerView.ViewHolder {
         TextView txtTieuDe, txtNoiDung, txtNgayGui,txtNguoiGui;
 
         public ThongBaoViewHolder(@NonNull View itemView) {

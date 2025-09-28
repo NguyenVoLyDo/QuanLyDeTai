@@ -14,7 +14,7 @@ import com.example.quanlydetai.models.DeTai;
 import java.util.List;
 
 public class DangKyDeTaiAdapter extends RecyclerView.Adapter<DangKyDeTaiAdapter.DeTaiViewHolder> {
-    private List<DeTai> list;
+    private final List<DeTai> list;
 
     public DangKyDeTaiAdapter(List<DeTai> list) {
         this.list = list;
@@ -40,7 +40,7 @@ public class DangKyDeTaiAdapter extends RecyclerView.Adapter<DangKyDeTaiAdapter.
         return list.size();
     }
 
-    static class DeTaiViewHolder extends RecyclerView.ViewHolder {
+    public static class DeTaiViewHolder extends RecyclerView.ViewHolder {
         TextView txtTenDeTai, txtMoTa, txtTrangThai;
 
         public DeTaiViewHolder(@NonNull View itemView) {

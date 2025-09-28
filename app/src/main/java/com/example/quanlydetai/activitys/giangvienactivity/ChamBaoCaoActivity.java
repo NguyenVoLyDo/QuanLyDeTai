@@ -18,23 +18,21 @@ import java.util.List;
 
 public class ChamBaoCaoActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
     private ChamBaoCaoAdapter adapter;
     private List<BaoCao> baoCaoList;
     private FirebaseFirestore db;
 
-
-    private boolean isGiangVien = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cham_bao_cao);
 
-        recyclerView = findViewById(R.id.recyclerChamBaoCao);
+        RecyclerView recyclerView = findViewById(R.id.recyclerChamBaoCao);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         baoCaoList = new ArrayList<>();
+        boolean isGiangVien = true;
         adapter = new ChamBaoCaoAdapter(this, baoCaoList, isGiangVien);
         recyclerView.setAdapter(adapter);
 

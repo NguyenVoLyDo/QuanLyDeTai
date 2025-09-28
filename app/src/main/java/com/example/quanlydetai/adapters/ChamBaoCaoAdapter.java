@@ -29,10 +29,10 @@ import java.util.List;
 
 public class ChamBaoCaoAdapter extends RecyclerView.Adapter<ChamBaoCaoAdapter.BaoCaoViewHolder> {
 
-    private Context context;
-    private List<BaoCao> baoCaoList;
-    private boolean isGiangVien;
-    private FirebaseFirestore db;
+    private final Context context;
+    private final List<BaoCao> baoCaoList;
+    private final boolean isGiangVien;
+    private final FirebaseFirestore db;
 
     public ChamBaoCaoAdapter(Context context, List<BaoCao> baoCaoList, boolean isGiangVien) {
         this.context = context;
@@ -132,7 +132,7 @@ public class ChamBaoCaoAdapter extends RecyclerView.Adapter<ChamBaoCaoAdapter.Ba
         return baoCaoList.size();
     }
 
-    static class BaoCaoViewHolder extends RecyclerView.ViewHolder {
+    public static class BaoCaoViewHolder extends RecyclerView.ViewHolder {
         TextView txtTenBaoCao, txtLinkFile, txtNgayNop, txtDiem, txtNhanXet;
 
         public BaoCaoViewHolder(@NonNull View itemView) {

@@ -17,9 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DanhSachDeTaiActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
     private DangKyDeTaiAdapter adapter;
-    private List<DeTai> deTaiList = new ArrayList<>();
+    private final List<DeTai> deTaiList = new ArrayList<>();
     private FirebaseFirestore db;
 
     private String sinhVienId;
@@ -31,7 +30,7 @@ public class DanhSachDeTaiActivity extends AppCompatActivity {
 
         sinhVienId = getIntent().getStringExtra("maSV");
 
-        recyclerView = findViewById(R.id.recyclerDeTai);
+        RecyclerView recyclerView = findViewById(R.id.recyclerDeTai);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new DangKyDeTaiAdapter(deTaiList);

@@ -24,11 +24,9 @@ import java.util.Locale;
 public class BaoCaoActivity extends AppCompatActivity {
 
     private EditText edtTenBaoCao, edtLinkFile;
-    private Button btnNopBaoCao;
-    private RecyclerView recyclerView;
 
     private BaoCaoAdapter adapter;
-    private List<BaoCao> baoCaoList = new ArrayList<>();
+    private final List<BaoCao> baoCaoList = new ArrayList<>();
     private FirebaseFirestore db;
 
     private String sinhVienId;
@@ -43,8 +41,8 @@ public class BaoCaoActivity extends AppCompatActivity {
 
         edtTenBaoCao = findViewById(R.id.edtTenBaoCao);
         edtLinkFile = findViewById(R.id.edtLinkFile);
-        btnNopBaoCao = findViewById(R.id.btnNopBaoCao);
-        recyclerView = findViewById(R.id.recyclerBaoCao);
+        Button btnNopBaoCao = findViewById(R.id.btnNopBaoCao);
+        RecyclerView recyclerView = findViewById(R.id.recyclerBaoCao);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new BaoCaoAdapter(baoCaoList);

@@ -14,15 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.quanlydetai.R;
 import com.example.quanlydetai.models.DeTai;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.List;
 
 public class DuyetDeTaiAdapter extends RecyclerView.Adapter<DuyetDeTaiAdapter.DeTaiViewHolder> {
 
-    private Context context;
-    private List<DeTai> deTaiList;
-    private FirebaseFirestore db;
+    private final Context context;
+    private final List<DeTai> deTaiList;
+    private final FirebaseFirestore db;
 
     public DuyetDeTaiAdapter(Context context, List<DeTai> deTaiList) {
         this.context = context;
@@ -81,7 +80,7 @@ public class DuyetDeTaiAdapter extends RecyclerView.Adapter<DuyetDeTaiAdapter.De
                 );
     }
 
-    static class DeTaiViewHolder extends RecyclerView.ViewHolder {
+    public static class DeTaiViewHolder extends RecyclerView.ViewHolder {
         TextView txtTenDeTai, txtMoTa, txtTrangThai;
 
         public DeTaiViewHolder(@NonNull View itemView) {

@@ -34,12 +34,10 @@ import java.util.List;
 public class GVMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
-    private NavigationView navigationViewLeft, navigationViewRight;
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
     private DuyetDeTaiAdapter adapter;
-    private List<DeTai> deTaiList = new ArrayList<>();
-    private ImageView imgAvatar;
+    private final List<DeTai> deTaiList = new ArrayList<>();
     private FirebaseFirestore db;
 
     private TextView txtEmpty;
@@ -59,8 +57,8 @@ public class GVMainActivity extends AppCompatActivity implements NavigationView.
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.drawer_layout);
-        navigationViewRight= findViewById(R.id.nav_view_gv_right);
-        navigationViewLeft = findViewById(R.id.nav_view_gv_left);
+        NavigationView navigationViewRight = findViewById(R.id.nav_view_gv_right);
+        NavigationView navigationViewLeft = findViewById(R.id.nav_view_gv_left);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar,
@@ -71,7 +69,7 @@ public class GVMainActivity extends AppCompatActivity implements NavigationView.
         navigationViewLeft.setNavigationItemSelectedListener(this);
         navigationViewRight.setNavigationItemSelectedListener(this);
 
-        imgAvatar = findViewById(R.id.imgAvatar);
+        ImageView imgAvatar = findViewById(R.id.imgAvatar);
         imgAvatar.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.END));
 
         recyclerView = findViewById(R.id.recyclerDeTaiGV);

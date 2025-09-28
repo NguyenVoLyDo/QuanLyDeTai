@@ -17,7 +17,6 @@ import java.util.Locale;
 
 public class DangKyDeTaiActivity extends AppCompatActivity {
     private EditText edtTenDeTai, edtMoTa;
-    private Button btnDangKy;
     private FirebaseFirestore db;
 
     // Giả định sinh viên đã login, ta có mã sinh viên
@@ -31,7 +30,7 @@ public class DangKyDeTaiActivity extends AppCompatActivity {
 
         edtTenDeTai = findViewById(R.id.edtTenDeTai);
         edtMoTa = findViewById(R.id.edtMoTa);
-        btnDangKy = findViewById(R.id.btnDangKy);
+        Button btnDangKy = findViewById(R.id.btnDangKy);
 
         db = FirebaseFirestore.getInstance();
 

@@ -3,7 +3,6 @@ package com.example.quanlydetai.activitys.adminactivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,17 +18,16 @@ import java.util.List;
 
 public class AccountManagementActivity extends AppCompatActivity {
 
-    private ListView lvTaiKhoan;
     private List<TaiKhoan> taiKhoanList;
     private TaiKhoanAdapter adapter;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_management);
 
-        lvTaiKhoan = findViewById(R.id.lvTaiKhoan);
+        ListView lvTaiKhoan = findViewById(R.id.lvTaiKhoan);
         taiKhoanList = new ArrayList<>();
         adapter = new TaiKhoanAdapter(this, taiKhoanList);
         lvTaiKhoan.setAdapter(adapter);

@@ -13,7 +13,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private ImageView imgAvatar;
     private TextView txtHoTen, txtMa, txtEmail;
 
     private FirebaseFirestore db;
@@ -25,7 +24,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        imgAvatar = findViewById(R.id.imgAvatar);
+        ImageView imgAvatar = findViewById(R.id.imgAvatar);
         txtHoTen = findViewById(R.id.txtHoTen);
         txtMa = findViewById(R.id.txtMa);     // hiển thị: Mã SV hoặc Mã GV
         txtEmail = findViewById(R.id.txtEmail);

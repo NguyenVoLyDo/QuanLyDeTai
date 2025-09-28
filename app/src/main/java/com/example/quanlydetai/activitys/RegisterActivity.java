@@ -23,7 +23,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText edtHoTen, edtTenDangNhap, edtEmail, edtPassword, edtMaSV, edtMaGV;
     private Spinner spinnerLoaiTaiKhoan;
-    private Button btnRegister;
 
     private FirebaseFirestore db;
 
@@ -39,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         edtMaSV = findViewById(R.id.edtMaSV);
         edtMaGV = findViewById(R.id.edtMaGV);
         spinnerLoaiTaiKhoan = findViewById(R.id.spinnerLoaiTaiKhoan);
-        btnRegister = findViewById(R.id.btnRegister);
+        Button btnRegister = findViewById(R.id.btnRegister);
 
         db = FirebaseFirestore.getInstance();
 

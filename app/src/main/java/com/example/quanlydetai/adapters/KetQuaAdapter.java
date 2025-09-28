@@ -18,8 +18,8 @@ import com.example.quanlydetai.models.BaoCao;
 import java.util.List;
 
 public class KetQuaAdapter extends RecyclerView.Adapter<KetQuaAdapter.KetQuaViewHolder> {
-    private List<BaoCao> list;
-    private Context context;
+    private final List<BaoCao> list;
+    private final Context context;
 
     public KetQuaAdapter(List<BaoCao> list, Context context) {
         this.list = list;
@@ -59,7 +59,7 @@ public class KetQuaAdapter extends RecyclerView.Adapter<KetQuaAdapter.KetQuaView
         return list.size();
     }
 
-    static class KetQuaViewHolder extends RecyclerView.ViewHolder {
+    public static class KetQuaViewHolder extends RecyclerView.ViewHolder {
         TextView txtTenBaoCao, txtLinkFile, txtDiem, txtNhanXet, txtNgayCham;
 
         public KetQuaViewHolder(@NonNull View itemView) {

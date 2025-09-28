@@ -17,9 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ThongBaoActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
     private ThongBaoAdapter adapter;
-    private List<ThongBao> thongBaoList = new ArrayList<>();
+    private final List<ThongBao> thongBaoList = new ArrayList<>();
     private FirebaseFirestore db;
 
     private String sinhVienId;
@@ -31,7 +30,7 @@ public class ThongBaoActivity extends AppCompatActivity {
 
         sinhVienId = getIntent().getStringExtra("maSV");
 
-        recyclerView = findViewById(R.id.recyclerThongBao);
+        RecyclerView recyclerView = findViewById(R.id.recyclerThongBao);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new ThongBaoAdapter(thongBaoList);

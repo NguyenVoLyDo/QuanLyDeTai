@@ -14,7 +14,7 @@ import com.example.quanlydetai.models.BaoCao;
 import java.util.List;
 
 public class BaoCaoAdapter extends RecyclerView.Adapter<BaoCaoAdapter.BaoCaoViewHolder> {
-    private List<BaoCao> list;
+    private final List<BaoCao> list;
 
     public BaoCaoAdapter(List<BaoCao> list) {
         this.list = list;
@@ -40,7 +40,7 @@ public class BaoCaoAdapter extends RecyclerView.Adapter<BaoCaoAdapter.BaoCaoView
         return list.size();
     }
 
-    static class BaoCaoViewHolder extends RecyclerView.ViewHolder {
+    public static class BaoCaoViewHolder extends RecyclerView.ViewHolder {
         TextView txtTenBaoCao, txtLinkFile, txtNgayNop;
 
         public BaoCaoViewHolder(@NonNull View itemView) {

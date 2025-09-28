@@ -21,7 +21,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText edtUsername, edtPassword;
-    private Button btnLogin, btnRegister;
     private FirebaseFirestore db;
 
     @Override
@@ -31,8 +30,8 @@ public class LoginActivity extends AppCompatActivity {
 
         edtUsername = findViewById(R.id.edtUsername);
         edtPassword = findViewById(R.id.edtPassword);
-        btnLogin = findViewById(R.id.btnLogin);
-        btnRegister = findViewById(R.id.btnRegister);
+        Button btnLogin = findViewById(R.id.btnLogin);
+        Button btnRegister = findViewById(R.id.btnRegister);
 
         db = FirebaseFirestore.getInstance();
 

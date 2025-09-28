@@ -14,7 +14,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 public class SystemInfoActivity extends AppCompatActivity {
 
     private TextView tvTotalStudents, tvTotalLecturers, tvTotalTopics;
-    private Button btnRefresh;
     private FirebaseFirestore db;
 
     @Override
@@ -25,7 +24,7 @@ public class SystemInfoActivity extends AppCompatActivity {
         tvTotalStudents = findViewById(R.id.tvTotalStudents);
         tvTotalLecturers = findViewById(R.id.tvTotalLecturers);
         tvTotalTopics = findViewById(R.id.tvTotalTopics);
-        btnRefresh = findViewById(R.id.btnRefresh);
+        Button btnRefresh = findViewById(R.id.btnRefresh);
 
         db = FirebaseFirestore.getInstance();
 

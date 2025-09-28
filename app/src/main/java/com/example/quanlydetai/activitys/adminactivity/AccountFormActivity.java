@@ -1,7 +1,6 @@
 package com.example.quanlydetai.activitys.adminactivity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,9 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AccountFormActivity extends AppCompatActivity {
 
-    private EditText edtTenDangNhap, edtEmail, edtHoTen;
     private Spinner spinnerLoaiTK;
-    private Button btnSave;
 
     private FirebaseFirestore db;
     private TaiKhoan editTaiKhoan;
@@ -29,11 +26,11 @@ public class AccountFormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_form);
 
-        edtTenDangNhap = findViewById(R.id.edtTenDangNhap);
-        edtEmail = findViewById(R.id.edtEmail);
-        edtHoTen = findViewById(R.id.edtHoTen);
+        EditText edtTenDangNhap = findViewById(R.id.edtTenDangNhap);
+        EditText edtEmail = findViewById(R.id.edtEmail);
+        EditText edtHoTen = findViewById(R.id.edtHoTen);
         spinnerLoaiTK = findViewById(R.id.spinnerLoaiTK);
-        btnSave = findViewById(R.id.btnSave);
+        Button btnSave = findViewById(R.id.btnSave);
 
         db = FirebaseFirestore.getInstance();
 

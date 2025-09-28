@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
 import com.example.quanlydetai.R;
 import com.example.quanlydetai.models.TaiKhoan;
 
@@ -14,8 +16,8 @@ import java.util.List;
 
 public class TaiKhoanAdapter extends BaseAdapter {
 
-    private Context context;
-    private List<TaiKhoan> taiKhoanList;
+    private final Context context;
+    private final List<TaiKhoan> taiKhoanList;
 
     public TaiKhoanAdapter(Context context, List<TaiKhoan> taiKhoanList){
         this.context = context;
@@ -49,10 +51,10 @@ public class TaiKhoanAdapter extends BaseAdapter {
         // Hiển thị "Chưa phê duyệt" nếu role chưa được cấp
         if(tk.getTenLoaiTK().equals("Chưa phân quyền")){
             txtRole.setText("Chưa phê duyệt");
-            txtRole.setTextColor(context.getResources().getColor(android.R.color.holo_red_dark));
+            txtRole.setTextColor(ContextCompat.getColor(context, android.R.color.holo_red_dark));
         } else {
             txtRole.setText(tk.getTenLoaiTK());
-            txtRole.setTextColor(context.getResources().getColor(android.R.color.black));
+            txtRole.setTextColor(ContextCompat.getColor(context, android.R.color.black));
         }
 
         return convertView;

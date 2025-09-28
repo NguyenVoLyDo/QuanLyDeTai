@@ -2,8 +2,10 @@ package com.example.quanlydetai.activitys.studentactivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.Toast;
 
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +14,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.quanlydetai.R;
 import com.example.quanlydetai.activitys.ChangePasswordActivity;
@@ -24,10 +27,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,12 +34,9 @@ public class StudentMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
-    private NavigationView navigationViewLeft, navigationViewRight;
-    private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
     private DangKyDeTaiAdapter adapter;
-    private List<DeTai> deTaiList = new ArrayList<>();
-    private ImageView imgAvatar;
+    private final List<DeTai> deTaiList = new ArrayList<>();
     private FirebaseFirestore db;
 
     private String maSV; // nhận từ Login
@@ -60,8 +56,8 @@ public class StudentMainActivity extends AppCompatActivity
 
         // Drawer
         drawerLayout = findViewById(R.id.drawerLayout);
-        navigationViewLeft = findViewById(R.id.navigationViewLeft);
-        navigationViewRight = findViewById(R.id.navigationViewRight);
+        NavigationView navigationViewLeft = findViewById(R.id.navigationViewLeft);
+        NavigationView navigationViewRight = findViewById(R.id.navigationViewRight);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar,
@@ -72,11 +68,11 @@ public class StudentMainActivity extends AppCompatActivity
         navigationViewLeft.setNavigationItemSelectedListener(this);
         navigationViewRight.setNavigationItemSelectedListener(this);
 
-        imgAvatar = findViewById(R.id.imgAvatar);
+        ImageView imgAvatar = findViewById(R.id.imgAvatar);
         imgAvatar.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.END));
 
         // RecyclerView
-        recyclerView = findViewById(R.id.recyclerDeTai);
+        RecyclerView recyclerView = findViewById(R.id.recyclerDeTai);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new DangKyDeTaiAdapter(deTaiList);
         recyclerView.setAdapter(adapter);
