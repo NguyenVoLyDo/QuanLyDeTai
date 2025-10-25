@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.quanlydetai.R;
+import com.google.android.material.card.MaterialCardView;
 
 public class AdminMainActivity extends AppCompatActivity {
 
@@ -14,8 +15,8 @@ public class AdminMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_main);
 
-        Button btnManageAccounts = findViewById(R.id.btnManageAccounts);
-        Button btnManageSystemInfo = findViewById(R.id.btnManageSystemInfo);
+        MaterialCardView btnManageAccounts = findViewById(R.id.btnManageAccounts);
+        MaterialCardView btnManageSystemInfo = findViewById(R.id.btnManageSystemInfo);
 
         // Mở Activity quản lý tài khoản
         btnManageAccounts.setOnClickListener(view -> startActivity(new Intent(AdminMainActivity.this, AccountManagementActivity.class)));

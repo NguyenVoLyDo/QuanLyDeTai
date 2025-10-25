@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -77,6 +78,10 @@ public class GVMainActivity extends AppCompatActivity implements NavigationView.
         adapter = new DuyetDeTaiAdapter(this, deTaiList);
         recyclerView.setAdapter(adapter);
 
+        DividerItemDecoration divider = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        divider.setDrawable(getDrawable(R.drawable.divider));
+        recyclerView.addItemDecoration(divider);
+
         swipeRefreshLayout = findViewById(R.id.swipeRefresh);
         swipeRefreshLayout.setOnRefreshListener(this::loadDeTaiChuaDuyet);
         txtEmpty = findViewById(R.id.txtEmpty);
@@ -105,7 +110,6 @@ public class GVMainActivity extends AppCompatActivity implements NavigationView.
                         recyclerView.setVisibility(View.VISIBLE);
                         txtEmpty.setVisibility(View.GONE);
                     }
-
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Lỗi tải đề tài: " + e.getMessage(), Toast.LENGTH_SHORT).show();
