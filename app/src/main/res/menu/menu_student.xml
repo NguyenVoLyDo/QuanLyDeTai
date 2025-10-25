@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_detai" android:title="Đề tài đã đăng ký"/>
     <item android:id="@+id/nav_thongbao" android:title="Thông báo"/>
     <item android:id="@+id/nav_baocao" android:title="Nộp báo cáo"/>
     <item android:id="@+id/nav_ketqua" android:title="Tra kết quả"/>

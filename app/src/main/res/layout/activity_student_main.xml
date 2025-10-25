@@ -17,62 +17,40 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:titleTextColor="@android:color/white"
-            app:title="Đề tài đã đăng ký">
-        <ImageView
-            android:id="@+id/imgAvatar"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_account_circle"
-            android:layout_gravity="end"
-            android:padding="4dp"
-            android:contentDescription="@string/profile" />
+            android:titleTextColor="@android:color/white">
+
+            <ImageView
+                android:id="@+id/imgAvatar"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="end"
+                android:padding="4dp"
+                android:src="@drawable/ic_account_circle" />
+
         </androidx.appcompat.widget.Toolbar>
 
-
+        <!-- Chỗ chứa Fragment -->
         <FrameLayout
+            android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" />
 
-            <!-- Danh sách đề tài -->
-            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                android:id="@+id/swipeRefresh"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerDeTai"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="8dp"/>
-
-            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-            <!-- Floating Action Button -->
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabAddDeTai"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="16dp"
-                android:src="@android:drawable/ic_input_add"
-                app:backgroundTint="@color/purple_500" />
-        </FrameLayout>
     </LinearLayout>
 
-    <!-- Navigation Drawer -->
+    <!-- Navigation Drawer Left -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationViewLeft"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:menu="@menu/menu_student"
-        android:background="@android:color/white" />
+        app:menu="@menu/menu_student" />
+
+    <!-- Navigation Drawer Right -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationViewRight"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="end"
         app:menu="@menu/menu_profile" />
+
 </androidx.drawerlayout.widget.DrawerLayout>

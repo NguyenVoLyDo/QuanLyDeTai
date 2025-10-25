@@ -13,10 +13,10 @@ import com.example.quanlydetai.models.DeTai;
 
 import java.util.List;
 
-public class DangKyDeTaiAdapter extends RecyclerView.Adapter<DangKyDeTaiAdapter.DeTaiViewHolder> {
+public class HienThiDeTaiAdapter extends RecyclerView.Adapter<HienThiDeTaiAdapter.DeTaiViewHolder> {
     private final List<DeTai> list;
 
-    public DangKyDeTaiAdapter(List<DeTai> list) {
+    public HienThiDeTaiAdapter(List<DeTai> list) {
         this.list = list;
     }
 

@@ -1,66 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:openDrawer="start">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="?android:colorBackground">
 
-        <!-- Toolbar -->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="Danh sách đề tài chờ duyệt">
-        <ImageView
-            android:id="@+id/imgAvatar"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_account_circle"
-            android:layout_gravity="end"
-            android:padding="4dp"
-            android:contentDescription="@string/profile" />
-        </androidx.appcompat.widget.Toolbar>
+            android:layout_height="wrap_content">
 
-        <!-- RecyclerView hiển thị danh sách đề tài chưa duyệt -->
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipeRefresh"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerDeTaiGV"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="8dp" />
+                <ImageView
+                    android:id="@+id/imgAvatar"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_account_circle"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="16dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="4dp"
+                    android:contentDescription="@string/profile" />
 
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            </com.google.android.material.appbar.MaterialToolbar>
 
-        <TextView
-            android:id="@+id/txtEmpty"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Danh sách hiện đang trống"
-            android:textSize="16sp"
-            android:visibility="gone"
-            android:textColor="@android:color/darker_gray"/>
+            <!-- Chỗ chứa Fragment -->
+            <FrameLayout
+                android:id="@+id/fragmentContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
+        </com.google.android.material.appbar.AppBarLayout>
     </LinearLayout>
 
-    <!-- Navigation Drawer -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view_gv_left"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/menu_teacher" />
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view_gv_right"
         android:layout_width="wrap_content"
@@ -69,4 +63,3 @@
         app:menu="@menu/menu_profile" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
-

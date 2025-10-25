@@ -1,9 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_thongbao"
-        android:title="Gửi thông báo" />
-
+        android:id="@+id/nav_duyetdetai"
+        android:title="Duyệt đề tài" />
     <item
         android:id="@+id/nav_cham_baocao"
         android:title="Chấm báo cáo" />
+    <item
+        android:id="@+id/nav_thongbao"
+        android:title="Gửi thông báo" />
 </menu>

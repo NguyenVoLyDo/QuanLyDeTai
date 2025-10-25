@@ -18,8 +18,6 @@ import java.util.Locale;
 public class DangKyDeTaiActivity extends AppCompatActivity {
     private EditText edtTenDeTai, edtMoTa;
     private FirebaseFirestore db;
-
-    // Giả định sinh viên đã login, ta có mã sinh viên
     private String sinhVienId;
 
     @Override

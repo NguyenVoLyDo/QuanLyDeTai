@@ -1,6 +1,7 @@
 package com.example.quanlydetai.activitys.giangvienactivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -42,6 +43,15 @@ public class GuiThongBaoActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
+        // Ẩn/hiện edtMaSV dựa trên lựa chọn RadioButton
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.radioTatCa) edtMaSV.setVisibility(View.GONE);
+            else edtMaSV.setVisibility(View.VISIBLE);
+        });
+
+        // Ban đầu ẩn
+        if (radioTatCa.isChecked()) edtMaSV.setVisibility(View.GONE);
+
         btnGuiThongBao.setOnClickListener(v -> guiThongBao());
     }
 
@@ -61,7 +71,7 @@ public class GuiThongBaoActivity extends AppCompatActivity {
         } else if (!maSV.isEmpty()) {
              nguoiNhan = maSV ; // gửi riêng cho mã SV
         } else {
-            Toast.makeText(this, "Chọn đối tượng nhận hoặc nhập mã SV", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Chọn đối tượng nhận thông báo", Toast.LENGTH_SHORT).show();
             return;
         }
         String ngayGui = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
@@ -73,7 +83,7 @@ public class GuiThongBaoActivity extends AppCompatActivity {
                 .addOnSuccessListener(query -> {
                     String tenGV = "Giảng viên";
                     if (!query.isEmpty()) {
-                        tenGV = query.getDocuments().get(0).getString("hoTen"); // lấy tên GV
+                        tenGV = query.getDocuments().get(0).getString("hoTen"); // lấy tên người gửi
                     }
 
         ThongBao tb = new ThongBao(id, tieuDe, noiDung, ngayGui, tenGV, nguoiNhan);
