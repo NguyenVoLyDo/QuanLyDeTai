@@ -22,7 +22,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -42,28 +41,13 @@
             android:name=".activitys.giangvienactivity.GuiThongBaoActivity"
             android:exported="false" />
         <activity
-            android:name=".activitys.giangvienactivity.ChamBaoCaoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activitys.giangvienactivity.DuyetDeTaiActivity"
-            android:exported="false" />
-        <activity
             android:name=".activitys.giangvienactivity.GVMainActivity"
             android:exported="false" />
         <activity
-            android:name=".activitys.studentactivity.KetQuaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activitys.studentactivity.BaoCaoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activitys.studentactivity.DanhSachDeTaiActivity"
-            android:exported="false" />
+            android:name=".activitys.giangvienactivity.ThemDeTaiGoiYActivity"
+            android:exported="true" />
         <activity
             android:name=".activitys.studentactivity.DangKyDeTaiActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activitys.studentactivity.ThongBaoActivity"
             android:exported="false" />
         <activity
             android:name=".activitys.studentactivity.StudentMainActivity"

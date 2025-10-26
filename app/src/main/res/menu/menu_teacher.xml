@@ -6,6 +6,9 @@
         android:id="@+id/nav_cham_baocao"
         android:title="Chấm báo cáo" />
     <item
+        android:id="@+id/nav_them_goiy"
+        android:title="Thêm đề tài gợi ý" />
+    <item
         android:id="@+id/nav_thongbao"
         android:title="Gửi thông báo" />
 </menu>

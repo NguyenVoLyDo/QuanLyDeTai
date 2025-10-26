@@ -19,6 +19,7 @@ import com.example.quanlydetai.activitys.LoginActivity;
 import com.example.quanlydetai.activitys.ProfileActivity;
 import com.example.quanlydetai.fragment.GiangvienFrag.ChamBaoCaoFragment;
 import com.example.quanlydetai.fragment.GiangvienFrag.GVDuyetDeTaiFragment;
+import com.example.quanlydetai.fragment.GiangvienFrag.GoiYDeTaiFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class GVMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -78,6 +79,8 @@ public class GVMainActivity extends AppCompatActivity implements NavigationView.
             replaceFragment(ChamBaoCaoFragment.newInstance(maGV));
         } else if (id == R.id.nav_thongbao) {
             startActivity(new Intent(this, GuiThongBaoActivity.class).putExtra("maGV", maGV));
+        } else if (id == R.id.nav_them_goiy) {
+            replaceFragment(GoiYDeTaiFragment.newInstance(maGV));
         } else if (id == R.id.nav_profile) {
             startActivity(new Intent(this, ProfileActivity.class)
                     .putExtra("maGV", maGV)

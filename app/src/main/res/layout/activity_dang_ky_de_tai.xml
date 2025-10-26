@@ -46,19 +46,28 @@
         app:cornerRadius="8dp" />
 
     <TextView
+        android:id="@+id/txtTitleGoiY"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Danh sách đề tài gợi ý đăng ký"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="?android:textColorPrimary"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="12dp"/>
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="12dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvDanhSachDeTai"
+    <!-- SwipeRefreshLayout -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshGoiY"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvDanhSachDeTai"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </LinearLayout>
