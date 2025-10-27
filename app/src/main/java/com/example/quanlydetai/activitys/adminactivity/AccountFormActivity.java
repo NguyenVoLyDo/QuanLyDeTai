@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quanlydetai.R;
 import com.example.quanlydetai.models.TaiKhoan;
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -21,7 +22,7 @@ import java.util.Map;
 
 public class AccountFormActivity extends AppCompatActivity {
 
-    private Spinner spinnerLoaiTK;
+    private MaterialAutoCompleteTextView spinnerLoaiTK;
     private FirebaseFirestore db;
     private TaiKhoan editTaiKhoan;
 
@@ -36,40 +37,36 @@ public class AccountFormActivity extends AppCompatActivity {
         edtTenDangNhap = findViewById(R.id.edtTenDangNhap);
         edtEmail = findViewById(R.id.edtEmail);
         edtHoTen = findViewById(R.id.edtHoTen);
-        edtMatKhau = findViewById(R.id.edtMatKhau);
+        edtMatKhau = findViewById(R.id.edtPassword);
         edtMaSV = findViewById(R.id.edtMaSV);
         edtMaGV = findViewById(R.id.edtMaGV);
-        spinnerLoaiTK = findViewById(R.id.spinnerLoaiTK);
+        spinnerLoaiTK = findViewById(R.id.spinnerLoaiTaiKhoan);
         Button btnSave = findViewById(R.id.btnSave);
 
         db = FirebaseFirestore.getInstance();
 
         // --- Thiết lập spinner loại tài khoản ---
         String[] roles = getResources().getStringArray(R.array.roles_array);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, roles);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                roles
+        );
         spinnerLoaiTK.setAdapter(adapter);
 
         // Ẩn/hiện mã SV hoặc GV theo loại tài khoản
-        spinnerLoaiTK.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(android.widget.AdapterView<?> parent, View view, int position, long id) {
-                String loaiTK = spinnerLoaiTK.getSelectedItem().toString();
-                if (loaiTK.equals("Sinh viên")) {
-                    edtMaSV.setVisibility(View.VISIBLE);
-                    edtMaGV.setVisibility(View.GONE);
-                } else if (loaiTK.equals("Giảng viên")) {
-                    edtMaSV.setVisibility(View.GONE);
-                    edtMaGV.setVisibility(View.VISIBLE);
-                } else {
-                    edtMaSV.setVisibility(View.GONE);
-                    edtMaGV.setVisibility(View.GONE);
-                }
+        spinnerLoaiTK.setOnItemClickListener((parent, view, position, id) -> {
+            String loaiTK = spinnerLoaiTK.getText().toString();
+            if (loaiTK.equals("Sinh viên")) {
+                edtMaSV.setVisibility(View.VISIBLE);
+                edtMaGV.setVisibility(View.GONE);
+            } else if (loaiTK.equals("Giảng viên")) {
+                edtMaSV.setVisibility(View.GONE);
+                edtMaGV.setVisibility(View.VISIBLE);
+            } else {
+                edtMaSV.setVisibility(View.GONE);
+                edtMaGV.setVisibility(View.GONE);
             }
-
-            @Override
-            public void onNothingSelected(android.widget.AdapterView<?> parent) { }
         });
 
         // --- Nhận dữ liệu tài khoản nếu đang sửa ---
@@ -106,7 +103,7 @@ public class AccountFormActivity extends AppCompatActivity {
         String email = edtEmail.getText().toString().trim();
         String hoTen = edtHoTen.getText().toString().trim();
         String matKhau = edtMatKhau.getText().toString().trim();
-        String loaiTK = spinnerLoaiTK.getSelectedItem().toString();
+        String loaiTK = spinnerLoaiTK.getText().toString();
         String maSV = edtMaSV.getText().toString().trim();
         String maGV = edtMaGV.getText().toString().trim();
 
@@ -145,7 +142,7 @@ public class AccountFormActivity extends AppCompatActivity {
         }
 
         String matKhau = edtMatKhau.getText().toString().trim();
-        String loaiTK = spinnerLoaiTK.getSelectedItem().toString();
+        String loaiTK = spinnerLoaiTK.getText().toString();
         String maSV = edtMaSV.getText().toString().trim();
         String maGV = edtMaGV.getText().toString().trim();
 
