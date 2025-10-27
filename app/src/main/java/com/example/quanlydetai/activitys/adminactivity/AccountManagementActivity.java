@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quanlydetai.R;
 import com.example.quanlydetai.adapters.TaiKhoanAdapter;
+import com.example.quanlydetai.interfaces.OnAccountActionListener;
 import com.example.quanlydetai.models.TaiKhoan;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -17,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountManagementActivity extends AppCompatActivity {
+public class AccountManagementActivity extends AppCompatActivity implements OnAccountActionListener {
 
     private List<TaiKhoan> taiKhoanList;
     private TaiKhoanAdapter adapter;
@@ -32,8 +33,9 @@ public class AccountManagementActivity extends AppCompatActivity {
         FloatingActionButton fabAdd = findViewById(R.id.fabAddAccount);
 
         taiKhoanList = new ArrayList<>();
-        adapter = new TaiKhoanAdapter(this, taiKhoanList);
+        adapter = new TaiKhoanAdapter(this, taiKhoanList, this);
         lvTaiKhoan.setAdapter(adapter);
+
 
         // mở form thêm tài khoản
         fabAdd.setOnClickListener(v -> {
@@ -43,38 +45,32 @@ public class AccountManagementActivity extends AppCompatActivity {
 
         loadTaiKhoan();
 
-        // click item để sửa hoặc xóa
-        lvTaiKhoan.setOnItemClickListener((parent, view, position, id) -> {
-            TaiKhoan selected = taiKhoanList.get(position);
-            showOptionDialog(selected);
-        });
     }
 
-    private void showOptionDialog(TaiKhoan selected) {
-        String[] options = {"Sửa tài khoản", "Xóa tài khoản"};
+    @Override
+    public void onEdit(TaiKhoan taiKhoan) {
+        Intent intent = new Intent(this, AccountFormActivity.class);
+        intent.putExtra("taiKhoan", taiKhoan);
+        startActivity(intent);
+    }
+
+    public void onDelete(TaiKhoan taiKhoan) {
         new AlertDialog.Builder(this)
-                .setTitle(selected.getHoTen())
-                .setItems(options, (dialog, which) -> {
-                    if (which == 0) {
-                        Intent intent = new Intent(this, AccountFormActivity.class);
-                        intent.putExtra("taiKhoan", selected);
-                        startActivity(intent);
-                    } else {
-                        deleteAccount(selected);
-                    }
+                .setTitle("Xác nhận")
+                .setMessage("Bạn có chắc muốn xóa tài khoản này?")
+                .setPositiveButton("Xóa", (dialog, which) -> {
+                    db.collection("users").document(taiKhoan.getId())
+                            .delete()
+                            .addOnSuccessListener(aVoid -> {
+                                taiKhoanList.remove(taiKhoan);
+                                adapter.notifyDataSetChanged();
+                                Toast.makeText(this, "Đã xóa tài khoản", Toast.LENGTH_SHORT).show();
+                            })
+                            .addOnFailureListener(e ->
+                                    Toast.makeText(this, "Lỗi khi xóa", Toast.LENGTH_SHORT).show());
                 })
+                .setNegativeButton("Hủy", null)
                 .show();
-    }
-
-    private void deleteAccount(TaiKhoan tk) {
-        db.collection("users").document(tk.getId())
-                .delete()
-                .addOnSuccessListener(aVoid -> {
-                    taiKhoanList.remove(tk);
-                    adapter.notifyDataSetChanged();
-                    Toast.makeText(this, "Đã xóa tài khoản", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> Toast.makeText(this, "Lỗi khi xóa", Toast.LENGTH_SHORT).show());
     }
 
     private void loadTaiKhoan() {

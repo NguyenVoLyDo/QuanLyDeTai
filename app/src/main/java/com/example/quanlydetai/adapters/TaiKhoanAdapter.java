@@ -1,96 +1,70 @@
 package com.example.quanlydetai.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.core.content.ContextCompat;
-
+import androidx.appcompat.widget.PopupMenu;
 import com.example.quanlydetai.R;
-import com.example.quanlydetai.activitys.adminactivity.AccountFormActivity;
+import com.example.quanlydetai.interfaces.OnAccountActionListener;
 import com.example.quanlydetai.models.TaiKhoan;
-import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.List;
 
-public class TaiKhoanAdapter extends BaseAdapter {
+public class TaiKhoanAdapter extends ArrayAdapter<TaiKhoan> {
 
     private final Context context;
     private final List<TaiKhoan> taiKhoanList;
+    private final OnAccountActionListener listener;
 
-    public TaiKhoanAdapter(Context context, List<TaiKhoan> taiKhoanList) {
+    public TaiKhoanAdapter(Context context, List<TaiKhoan> list, OnAccountActionListener listener) {
+        super(context, R.layout.item_taikhoan, list);
         this.context = context;
-        this.taiKhoanList = taiKhoanList;
-    }
-
-    @Override
-    public int getCount() {
-        return taiKhoanList.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return taiKhoanList.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
+        this.taiKhoanList = list;
+        this.listener = listener;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_taikhoan, parent, false);
+        View view = convertView;
+        if (view == null) {
+            view = LayoutInflater.from(context).inflate(R.layout.item_taikhoan, parent, false);
         }
 
-        TextView txtHoTen = convertView.findViewById(R.id.txtHoTen);
-        TextView txtTenDangNhap = convertView.findViewById(R.id.txtTenDangNhap);
-        TextView txtRole = convertView.findViewById(R.id.txtRole);
-        Button btnSua = convertView.findViewById(R.id.btnSua);
-        Button btnXoa = convertView.findViewById(R.id.btnXoa);
+        TaiKhoan tk = taiKhoanList.get(position);
+        TextView tvHoTen = view.findViewById(R.id.tvHoTen);
+        TextView tvTenDangNhap = view.findViewById(R.id.tvTenDangNhap);
+        TextView tvLoaiTaiKhoan = view.findViewById(R.id.tvLoaiTaiKhoan);
+        ImageButton btnMore = view.findViewById(R.id.btnMore);
 
-        TaiKhoan taiKhoan = taiKhoanList.get(position);
+        tvHoTen.setText(tk.getHoTen());
+        tvTenDangNhap.setText("Tên đăng nhập: " + tk.getTenDangNhap());
+        tvLoaiTaiKhoan.setText(tk.getTenLoaiTK());
 
-        txtHoTen.setText(taiKhoan.getHoTen());
-        txtTenDangNhap.setText(taiKhoan.getTenDangNhap());
+        btnMore.setOnClickListener(v -> showPopupMenu(v, tk));
 
-        if (taiKhoan.getTenLoaiTK().equals("Chưa phân quyền")) {
-            txtRole.setText("Chưa phê duyệt");
-            txtRole.setTextColor(ContextCompat.getColor(context, android.R.color.holo_red_dark));
-        } else {
-            txtRole.setText(taiKhoan.getTenLoaiTK());
-            txtRole.setTextColor(ContextCompat.getColor(context, android.R.color.black));
-        }
+        return view;
+    }
 
-        // ✅ Nút Sửa
-        btnSua.setOnClickListener(v -> {
-            Intent intent = new Intent(context, AccountFormActivity.class);
-            intent.putExtra("taiKhoan", taiKhoan);
-            context.startActivity(intent);
+    private void showPopupMenu(View anchor, TaiKhoan tk) {
+        PopupMenu popupMenu = new PopupMenu(context, anchor);
+        popupMenu.getMenu().add("Sửa tài khoản");
+        popupMenu.getMenu().add("Xóa tài khoản");
+
+        popupMenu.setOnMenuItemClickListener(item -> {
+            String title = item.getTitle().toString();
+            if (title.equals("Sửa tài khoản")) {
+                listener.onEdit(tk);
+                return true;
+            } else if (title.equals("Xóa tài khoản")) {
+                listener.onDelete(tk);
+                return true;
+            }
+            return false;
         });
 
-        // ✅ Nút Xóa
-        btnXoa.setOnClickListener(v -> {
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("users").document(taiKhoan.getId())
-                    .delete()
-                    .addOnSuccessListener(aVoid -> {
-                        taiKhoanList.remove(taiKhoan);
-                        notifyDataSetChanged();
-                        Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
-                    })
-                    .addOnFailureListener(e ->
-                            Toast.makeText(context, "Lỗi khi xóa tài khoản", Toast.LENGTH_SHORT).show()
-                    );
-        });
-
-        return convertView;
+        popupMenu.show();
     }
 }
