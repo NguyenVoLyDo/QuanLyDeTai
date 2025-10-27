@@ -38,6 +38,9 @@ public class ThongBaoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        requireActivity().setTitle("Thông báo");
+
         View view = inflater.inflate(R.layout.fragment_thongbao, container, false);
 
         if (getArguments() != null)

@@ -5,6 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/btnThemTaiKhoan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thêm tài khoản"
+        android:backgroundTint="@color/purple_500"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="8dp" />
+
     <ListView
         android:id="@+id/lvTaiKhoan"
         android:layout_width="match_parent"

@@ -11,69 +11,91 @@
         android:orientation="vertical"
         android:padding="24dp">
 
+        <!-- Tiêu đề -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thông tin tài khoản"
-            android:textSize="24sp"
+            android:text="THÔNG TIN TÀI KHOẢN"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginBottom="24dp"
-            android:textColor="?android:textColorPrimary" />
+            android:textColor="?android:textColorPrimary"
+            android:layout_marginBottom="24dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="THÔNG TIN CỐ ĐỊNH"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:textColor="?android:textColorSecondary"
-            android:layout_marginBottom="8dp"/>
-
+        <!-- Tên đăng nhập -->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilTenDangNhap"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Tên đăng nhập"
-            android:enabled="false"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtTenDangNhap"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Email -->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilEmail"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
-            android:enabled="false"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Họ tên -->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilHoTen"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Họ tên"
-            android:enabled="false"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtHoTen"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Mật khẩu -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mật khẩu"
+            app:endIconMode="password_toggle"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginBottom="24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtMatKhau"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+            android:id="@+id/edtMaSV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mã sinh viên"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/edtMaGV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mã giảng viên"
+            android:visibility="gone" />
+        <!-- PHÂN QUYỀN -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,31 +103,31 @@
             android:textSize="12sp"
             android:textStyle="bold"
             android:textColor="?android:textColorSecondary"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilLoaiTK"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loại tài khoản"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp" />
+
+        <Spinner
+            android:id="@+id/spinnerLoaiTK"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Loại tài khoản">
+            android:layout_marginBottom="24dp" />
 
-            <AutoCompleteTextView
-                android:id="@+id/spinnerLoaiTK"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none" /> </com.google.android.material.textfield.TextInputLayout>
-
-
+        <!-- Nút Lưu -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lưu thay đổi"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:paddingVertical="12dp"
-            app:cornerRadius="8dp"/>
+            android:text="Lưu thay đổi"
+            app:cornerRadius="8dp" />
 
     </LinearLayout>
 </ScrollView>

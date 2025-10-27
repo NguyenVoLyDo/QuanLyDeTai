@@ -49,6 +49,8 @@ public class GVDuyetDeTaiFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
+        requireActivity().setTitle("Duyệt đề tài");
+
         View view = inflater.inflate(R.layout.fragment_gv_duyet_detai, container, false);
 
         if (getArguments() != null) {

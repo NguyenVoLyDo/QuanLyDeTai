@@ -50,6 +50,9 @@
             android:name=".activitys.studentactivity.DangKyDeTaiActivity"
             android:exported="false" />
         <activity
+            android:name=".activitys.studentactivity.SuaDeTaiActivity"
+            android:exported="false" />
+        <activity
             android:name=".activitys.studentactivity.StudentMainActivity"
             android:exported="false" />
         <activity

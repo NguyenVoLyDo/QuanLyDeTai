@@ -44,6 +44,8 @@ public class KetQuaFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        requireActivity().setTitle("Kết quả");
+
         View view = inflater.inflate(R.layout.fragment_ket_qua, container, false);
 
         if (getArguments() != null) {

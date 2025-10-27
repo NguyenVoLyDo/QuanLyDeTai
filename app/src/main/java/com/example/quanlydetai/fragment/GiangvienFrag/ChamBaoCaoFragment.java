@@ -46,6 +46,8 @@ public class ChamBaoCaoFragment extends Fragment {
                              ViewGroup container,
                              Bundle savedInstanceState) {
 
+        requireActivity().setTitle("Chấm báo cáo");
+
         View view = inflater.inflate(R.layout.fragment_cham_bao_cao, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerChamBaoCao);

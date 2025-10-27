@@ -21,7 +21,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.PopupMenu;
 import java.util.*;
 
-public class GoiYDeTaiFragment extends Fragment {
+public class DeTaiGoiYFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -31,8 +31,8 @@ public class GoiYDeTaiFragment extends Fragment {
     private FirebaseFirestore db;
     private String maGV;
 
-    public static GoiYDeTaiFragment newInstance(String maGV) {
-        GoiYDeTaiFragment fragment = new GoiYDeTaiFragment();
+    public static DeTaiGoiYFragment newInstance(String maGV) {
+        DeTaiGoiYFragment fragment = new DeTaiGoiYFragment();
         Bundle args = new Bundle();
         args.putString("maGV", maGV);
         fragment.setArguments(args);
@@ -43,6 +43,8 @@ public class GoiYDeTaiFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+        requireActivity().setTitle("Đề tài gợi ý cho sinh viên");
 
         View view = inflater.inflate(R.layout.fragment_goi_y_detai, container, false);
 

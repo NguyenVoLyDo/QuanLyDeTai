@@ -56,6 +56,8 @@ public class BaoCaoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        requireActivity().setTitle("Báo cáo");
+
         View view = inflater.inflate(R.layout.fragment_bao_cao, container, false);
 
         if (getArguments() != null) {

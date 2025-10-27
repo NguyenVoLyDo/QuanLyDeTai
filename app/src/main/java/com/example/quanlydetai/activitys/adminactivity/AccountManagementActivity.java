@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.Button;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,6 +29,12 @@ public class AccountManagementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_management);
 
+        Button btnThem = findViewById(R.id.btnThemTaiKhoan);
+        btnThem.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AccountFormActivity.class);
+            startActivity(intent);
+        });
+
         ListView lvTaiKhoan = findViewById(R.id.lvTaiKhoan);
         taiKhoanList = new ArrayList<>();
         adapter = new TaiKhoanAdapter(this, taiKhoanList);
@@ -35,7 +43,7 @@ public class AccountManagementActivity extends AppCompatActivity {
         loadTaiKhoan();
 
         // Long click để Sửa / Xóa
-        lvTaiKhoan.setOnItemLongClickListener((parent, view, position, id) -> {
+        lvTaiKhoan.setOnItemClickListener((parent, view, position, id) -> {
             TaiKhoan selected = taiKhoanList.get(position);
 
             String[] options = {"Sửa", "Xóa"};
@@ -43,12 +51,10 @@ public class AccountManagementActivity extends AppCompatActivity {
                     .setTitle(selected.getHoTen())
                     .setItems(options, (dialog, which) -> {
                         if(which == 0){
-                            // Sửa: gán role
                             Intent intent = new Intent(AccountManagementActivity.this, AccountFormActivity.class);
                             intent.putExtra("taiKhoan", selected);
                             startActivity(intent);
                         } else if(which == 1){
-                            // Xóa tài khoản Firestore
                             db.collection("users").document(selected.getId())
                                     .delete()
                                     .addOnSuccessListener(aVoid -> {
@@ -59,9 +65,8 @@ public class AccountManagementActivity extends AppCompatActivity {
                                     .addOnFailureListener(e -> Toast.makeText(this, "Lỗi xóa tài khoản", Toast.LENGTH_SHORT).show());
                         }
                     }).show();
-
-            return true; // giữ sự kiện long click
         });
+
     }
 
     private void loadTaiKhoan(){

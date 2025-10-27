@@ -1,64 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="4dp"
-    app:cardElevation="2dp"
-    app:cardCornerRadius="12dp">
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@android:color/white">
 
+    <TextView
+        android:id="@+id/txtHoTen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtTenDangNhap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/txtRole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray" />
+
+    <!-- ✅ Thêm 2 nút Sửa và Xóa -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp"
-        android:gravity="center_vertical">
+        android:gravity="end"
+        android:layout_marginTop="8dp">
 
-        <ImageView
-            android:id="@+id/imgUserIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:tint="?attr/colorPrimary"
-            android:layout_marginEnd="16dp"
-            android:contentDescription="User Icon"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btnSua"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:text="Sửa" />
 
-            <TextView
-                android:id="@+id/txtHoTen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Họ tên"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="?android:textColorPrimary" />
-
-            <TextView
-                android:id="@+id/txtTenDangNhap"
-                android:text="Tên đăng nhập"
-                android:textSize="14sp"
-                android:layout_marginTop="2dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="?android:textColorSecondary" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/txtRole"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Role"
-                android:layout_marginTop="8dp"
-                app:chipBackgroundColor="?attr/colorSecondaryContainer"
-                android:textColor="?attr/colorOnSecondaryContainer" />
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/btnXoa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xóa"
+            android:layout_marginStart="10dp" />
     </LinearLayout>
 
-</com.google.android.material.card.MaterialCardView>
+</LinearLayout>

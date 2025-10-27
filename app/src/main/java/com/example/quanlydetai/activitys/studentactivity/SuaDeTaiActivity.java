@@ -1,7 +1,10 @@
 package com.example.quanlydetai.activitys.studentactivity;
 
 import android.os.Bundle;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,16 +16,17 @@ import com.example.quanlydetai.models.DeTai;
 import com.example.quanlydetai.models.DeTaiGoiY;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class DangKyDeTaiActivity extends AppCompatActivity {
+public class SuaDeTaiActivity extends AppCompatActivity {
 
     private EditText edtTenDeTai, edtMoTa;
     private RecyclerView rvDeTaiGoiY;
     private SwipeRefreshLayout swipeRefreshGoiY;
     private FirebaseFirestore db;
-    private String sinhVienId;
+    private String deTaiId;
+    private DeTai deTai;
     private List<DeTaiGoiY> dsGoiY = new ArrayList<>();
     private DeTaiGoiYAdapter adapter;
 
@@ -31,18 +35,17 @@ public class DangKyDeTaiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dang_ky_de_tai);
 
-        sinhVienId = getIntent().getStringExtra("maSV");
+        deTaiId = getIntent().getStringExtra("deTaiId");
 
         edtTenDeTai = findViewById(R.id.edtTenDeTai);
         edtMoTa = findViewById(R.id.edtMoTa);
-        Button btnDangKy = findViewById(R.id.btnDangKy);
+        Button btnLuu = findViewById(R.id.btnDangKy);
 
         rvDeTaiGoiY = findViewById(R.id.rvDanhSachDeTai);
         swipeRefreshGoiY = findViewById(R.id.swipeRefreshGoiY);
-
         rvDeTaiGoiY.setLayoutManager(new LinearLayoutManager(this));
-        db = FirebaseFirestore.getInstance();
 
+        db = FirebaseFirestore.getInstance();
         adapter = new DeTaiGoiYAdapter(dsGoiY, (v, deTai) -> {
             edtTenDeTai.setText(deTai.getTenDeTai());
             edtMoTa.setText(deTai.getMoTa());
@@ -50,10 +53,29 @@ public class DangKyDeTaiActivity extends AppCompatActivity {
 
         rvDeTaiGoiY.setAdapter(adapter);
 
-        btnDangKy.setOnClickListener(v -> dangKyDeTai());
+        btnLuu.setOnClickListener(v -> updateData());
         swipeRefreshGoiY.setOnRefreshListener(this::loadDeTaiGoiY);
 
+        loadDeTai();
+
         loadDeTaiGoiY();
+    }
+
+    private void loadDeTai() {
+        db.collection("detai").document(deTaiId)
+                .get()
+                .addOnSuccessListener(doc -> {
+                    if (doc.exists()) {
+                        deTai = doc.toObject(DeTai.class);
+                        if (deTai != null) {
+                            edtTenDeTai.setText(deTai.getTenDeTai());
+                            edtMoTa.setText(deTai.getMoTa());
+                        }
+                    }
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Lỗi tải đề tài!", Toast.LENGTH_SHORT).show()
+                );
     }
 
     private void loadDeTaiGoiY() {
@@ -76,22 +98,13 @@ public class DangKyDeTaiActivity extends AppCompatActivity {
                 });
     }
 
-    private void dangKyDeTai() {
-        String ten = edtTenDeTai.getText().toString().trim();
-        String moTa = edtMoTa.getText().toString().trim();
-
-        if (ten.isEmpty() || moTa.isEmpty()) {
-            Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String id = db.collection("detai").document().getId();
-        String ngay = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-
-        DeTai deTai = new DeTai(id, ten, moTa, sinhVienId, "pending", ngay);
-
-        db.collection("detai").document(id).set(deTai)
-                .addOnSuccessListener(a -> Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(e -> Toast.makeText(this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+    private void updateData() {
+        db.collection("detai").document(deTaiId)
+                .update("tenDeTai", edtTenDeTai.getText().toString(),
+                        "moTa", edtMoTa.getText().toString())
+                .addOnSuccessListener(a ->
+                        Toast.makeText(this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show()
+                );
     }
 }
+

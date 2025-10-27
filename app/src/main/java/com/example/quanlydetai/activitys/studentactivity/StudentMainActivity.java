@@ -41,7 +41,7 @@ public class StudentMainActivity extends AppCompatActivity
         // Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
         // Drawer
         drawerLayout = findViewById(R.id.drawerLayout);
         NavigationView navigationViewLeft = findViewById(R.id.navigationViewLeft);
