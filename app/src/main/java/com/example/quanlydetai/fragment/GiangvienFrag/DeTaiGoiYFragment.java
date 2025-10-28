@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.quanlydetai.R;
+import com.example.quanlydetai.activitys.giangvienactivity.SuaDeTaiGoiYActivity;
 import com.example.quanlydetai.activitys.giangvienactivity.ThemDeTaiGoiYActivity;
 import com.example.quanlydetai.adapters.DeTaiGoiYAdapter;
 import com.example.quanlydetai.models.DeTaiGoiY;
@@ -79,11 +80,15 @@ public class DeTaiGoiYFragment extends Fragment {
         popup.getMenu().add("Xóa đề tài");
 
         popup.setOnMenuItemClickListener(item -> {
-            if (item.getTitle().equals("Xóa đề tài")) {
+            if(item.getTitle().equals("Sửa đề tài")){
+                startActivity(new Intent(getActivity(), SuaDeTaiGoiYActivity.class).putExtra("deTaiGoiYId", deTai.getDeTaiGoiYId()));
+                return true;
+            }
+            else if (item.getTitle().equals("Xóa đề tài")) {
                 confirmDelete(deTai);
                 return true;
             }
-            return false;
+            else return false;
         });
 
         popup.show();

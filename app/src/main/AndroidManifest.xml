@@ -26,9 +26,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activitys.RegisterActivity"
-            android:exported="false" />
-        <activity
             android:name=".activitys.adminactivity.AccountManagementActivity"
             android:exported="false" />
         <activity
@@ -42,6 +39,9 @@
             android:exported="false" />
         <activity
             android:name=".activitys.giangvienactivity.GVMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitys.giangvienactivity.SuaDeTaiGoiYActivity"
             android:exported="false" />
         <activity
             android:name=".activitys.giangvienactivity.ThemDeTaiGoiYActivity"
