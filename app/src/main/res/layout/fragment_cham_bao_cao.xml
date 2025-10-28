@@ -18,9 +18,9 @@
         android:padding="16dp"
         android:layout_gravity="center"
         android:visibility="gone"/>
-    </FrameLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerChamBaoCao"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    </FrameLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

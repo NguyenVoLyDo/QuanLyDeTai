@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,7 @@ public class ChamBaoCaoAdapter extends RecyclerView.Adapter<ChamBaoCaoAdapter.Ba
     @Override
     public void onBindViewHolder(@NonNull BaoCaoViewHolder holder, int position) {
         BaoCao bc = baoCaoList.get(position);
+        Log.d("BIND", "Binding item: " + bc.getTenBaoCao());
 
         holder.txtTenBaoCao.setText(bc.getTenBaoCao());
         holder.txtLinkFile.setText("File: " + bc.getLinkFile());
@@ -74,10 +76,9 @@ public class ChamBaoCaoAdapter extends RecyclerView.Adapter<ChamBaoCaoAdapter.Ba
             holder.txtDiem.setText("Điểm: " + (bc.getDiem() == null ? "-" : bc.getDiem()));
             holder.txtNhanXet.setText("Nhận xét: " + (bc.getNhanXet() == null ? "-" : bc.getNhanXet()));
 
-            // Ấn giữ để chấm điểm + nhận xét
-            holder.itemView.setOnLongClickListener(v -> {
+            // Ấn để chấm điểm + nhận xét
+            holder.itemView.setOnClickListener(v -> {
                 showChamDiemDialog(bc, position);
-                return true;
             });
         } else {
             holder.txtDiem.setVisibility(View.GONE);
@@ -129,9 +130,9 @@ public class ChamBaoCaoAdapter extends RecyclerView.Adapter<ChamBaoCaoAdapter.Ba
 
     @Override
     public int getItemCount() {
+        Log.d("ADAPTER", "Số lượng item: " + baoCaoList.size());
         return baoCaoList.size();
     }
-
     public static class BaoCaoViewHolder extends RecyclerView.ViewHolder {
         TextView txtTenBaoCao, txtLinkFile, txtNgayNop, txtDiem, txtNhanXet;
 

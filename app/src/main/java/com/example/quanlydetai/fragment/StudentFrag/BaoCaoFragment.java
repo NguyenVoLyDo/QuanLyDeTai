@@ -164,7 +164,7 @@ public class BaoCaoFragment extends Fragment {
         baoCao.setSinhVienId(sinhVienId);
         baoCao.setDeTaiId(deTaiId);
         baoCao.setNgayNop(ngayNop);
-        baoCao.setTrangThai("pending");
+        baoCao.setTrangThai("Chưa chấm");
 
         db.collection("baocao").document(baoCaoId).set(baoCao)
                 .addOnSuccessListener(aVoid -> {

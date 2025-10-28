@@ -45,7 +45,7 @@ public class DuyetDeTaiAdapter extends RecyclerView.Adapter<DuyetDeTaiAdapter.De
         holder.txtTrangThai.setText("Trạng thái: " + dt.getTrangThai());
 
         // Ấn giữ để duyệt hoặc từ chối
-        holder.itemView.setOnLongClickListener(v -> {
+        holder.itemView.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle("Duyệt đề tài")
                     .setMessage("Bạn muốn duyệt hay từ chối đề tài này?")
@@ -53,7 +53,6 @@ public class DuyetDeTaiAdapter extends RecyclerView.Adapter<DuyetDeTaiAdapter.De
                     .setNegativeButton("Từ chối", (dialog, which) -> updateDeTai(dt, "rejected", position))
                     .setNeutralButton("Hủy", null)
                     .show();
-            return true;
         });
     }
 

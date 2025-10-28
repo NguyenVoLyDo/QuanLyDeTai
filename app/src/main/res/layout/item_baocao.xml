@@ -22,7 +22,7 @@
             android:text="Tên báo cáo"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:textColor="?android:textColorPrimary"
+            android:textColor="#000000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -74,15 +74,18 @@
             android:textColor="?android:textColorPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"/> <TextView
-        android:id="@+id/txtNhanXet"
-        android:text="Nhận xét: ..."
-        android:textSize="14sp"
-        android:textStyle="italic"
-        android:textColor="?android:textColorSecondary"
-        android:layout_marginTop="4dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"/> </LinearLayout>
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/txtNhanXet"
+            android:text="Nhận xét: ..."
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:textColor="?android:textColorSecondary"
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+    </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

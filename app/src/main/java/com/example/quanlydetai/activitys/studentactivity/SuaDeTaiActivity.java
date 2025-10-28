@@ -101,10 +101,11 @@ public class SuaDeTaiActivity extends AppCompatActivity {
     private void updateData() {
         db.collection("detai").document(deTaiId)
                 .update("tenDeTai", edtTenDeTai.getText().toString(),
-                        "moTa", edtMoTa.getText().toString())
+                        "moTa", edtMoTa.getText().toString(),"trangThai","pending")
                 .addOnSuccessListener(a ->
                         Toast.makeText(this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show()
                 );
+        finish();
     }
 }
 

@@ -1,6 +1,7 @@
 package com.example.quanlydetai.fragment.GiangvienFrag;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,9 @@ public class ChamBaoCaoFragment extends Fragment {
         baoCaoList = new ArrayList<>();
         boolean isGiangVien = true;
         adapter = new ChamBaoCaoAdapter(getContext(), baoCaoList, isGiangVien);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
+        Log.d("TEST", "Adapter attached to RecyclerView: " + (recyclerView.getAdapter() != null));
 
         db = FirebaseFirestore.getInstance();
 
@@ -80,8 +83,8 @@ public class ChamBaoCaoFragment extends Fragment {
                     baoCaoList.clear();
                     for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
                         BaoCao bc = doc.toObject(BaoCao.class);
-                        bc.setDeTaiId(doc.getId());
                         baoCaoList.add(bc);
+                        Log.d("FIREBASE", "Tải báo cáo: " + bc.getTenBaoCao());
                     }
                     adapter.notifyDataSetChanged();
 
