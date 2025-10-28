@@ -1,82 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    android:background="?android:colorBackground"> <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Bảng điều khiển Admin"
-    android:textSize="26sp"
-    android:textStyle="bold"
-    android:textColor="?android:textColorPrimary"
-    android:layout_marginBottom="32dp"/>
+    android:padding="16dp"
+    android:background="?android:colorBackground">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/btnManageAccounts"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardElevation="4dp"
-        app:cardCornerRadius="12dp">
+        android:gravity="center_horizontal">
 
-        <LinearLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trang quản trị viên"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center"
+            android:textColor="?android:textColorPrimary" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnManageAccounts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="20dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                app:tint="?attr/colorPrimary"
-                android:layout_marginEnd="16dp"/>
+            android:layout_marginBottom="16dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="12dp"
+            android:clickable="true"
+            android:focusable="true">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Quản lý tài khoản"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="?android:textColorPrimary"/>
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+                android:padding="24dp" />
+        </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/btnManageSystemInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardElevation="4dp"
-        app:cardCornerRadius="12dp">
-
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnManageSystemInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="20dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                app:tint="?attr/colorPrimary"
-                android:layout_marginEnd="16dp"/>
+            android:layout_marginBottom="16dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="12dp"
+            android:clickable="true"
+            android:focusable="true">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Quản lý thông tin hệ thống"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="?android:textColorPrimary"/>
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+                android:padding="24dp" />
+        </com.google.android.material.card.MaterialCardView>
 
-</LinearLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnGuiThongBaoAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="12dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gửi thông báo"
+                android:textSize="18sp"
+                android:padding="24dp" />
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</ScrollView>
