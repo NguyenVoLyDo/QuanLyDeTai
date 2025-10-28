@@ -50,7 +50,7 @@ public class GuiThongBaoAdminActivity extends AppCompatActivity {
 
         btnGuiThongBao.setOnClickListener(v -> guiThongBao());
     }
-
+//hhi
     private void guiThongBao() {
         String tieuDe = edtTieuDe.getText().toString().trim();
         String noiDung = edtNoiDung.getText().toString().trim();
